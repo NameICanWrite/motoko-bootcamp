@@ -7,7 +7,7 @@
     "day_2": {
       "main": "day_2.mo",
       "type": "motoko"
-    },
+    }
   },
   "defaults": {
     "build": {
