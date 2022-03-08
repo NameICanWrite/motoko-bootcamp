@@ -8,7 +8,7 @@
       "main": "day_2.mo",
       "type": "motoko"
     },
-  
+  },
   "defaults": {
     "build": {
       "args": "",
