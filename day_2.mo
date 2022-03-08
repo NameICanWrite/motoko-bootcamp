@@ -60,4 +60,8 @@ public func nat_to_nat8(n : Nat) : async Nat8 {
         return res;
     };
 
+        public func trim_whitespace(t : Text) : async Text {
+        return Text.trim(t, #text " ")
+    };
+
 }
