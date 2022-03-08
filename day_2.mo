@@ -1,6 +1,7 @@
 import Array "mo:base/Array";
 import Nat "mo:base/Nat";
 import Nat8 "mo:base/Nat8";
+import Nat32 "mo:base/Nat32";
 import Text "mo:base/Text";
 import Char "mo:base/Char";
 
@@ -60,8 +61,41 @@ public func nat_to_nat8(n : Nat) : async Nat8 {
         return res;
     };
 
-        public func trim_whitespace(t : Text) : async Text {
+    public func is_inside(t : Text, c : Char) : async Bool {
+        for (value in t.chars()) {
+            if (value == c) {
+                return true
+            };
+        };
+        return false
+    };
+
+    public func trim_whitespace(t : Text) : async Text {
         return Text.trim(t, #text " ")
     };
+
+    public func duplicated_character(t : Text) : async Text {
+        var previousChars : Text = "";
+        for (char in t.chars()) {
+            if (await is_inside(previousChars, char)) {
+                return Char.toText(char)
+            };
+            previousChars := Text.concat(previousChars, Char.toText(char))
+        };
+        return t;
+    };
+
+    public func size_in_bytes(t : Text) : async Nat {
+        var sum : Nat = 0;
+
+        for (char in t.chars()) {
+            sum := sum + Nat32.toNat(Char.toNat32(char))
+        };
+        var sumBytes : Nat = sum / 256;
+        if (sum % 256 > 0) {
+            sumBytes := sumBytes + 1;
+        };
+        return sumBytes
+    }
 
 }
