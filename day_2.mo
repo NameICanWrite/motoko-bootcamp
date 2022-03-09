@@ -41,14 +41,13 @@ public func nat_to_nat8(n : Nat) : async Nat8 {
     public func capitalize_character(c : Char) : async Char {
         let uniChar : Nat32 = Char.toNat32(c);
         var capitalizedUniChar : Nat32 = 0;
-        if ((uniChar >= 97)) {
-            if ((uniChar <= 122)) {
+
+        if ((uniChar >= 97) and (uniChar <= 122)) {
                 capitalizedUniChar := uniChar - 32;
-            }
-            
         } else {
             capitalizedUniChar := uniChar;
         };
+
         return Char.fromNat32(capitalizedUniChar)
     };
 
